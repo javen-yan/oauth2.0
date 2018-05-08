@@ -9,11 +9,13 @@ from flask import Flask, request, redirect, render_template
 
 app = Flask(__name__)
 
+host = 'http://localhost:5000'
+
 users = {
     "magigo": ["123456"]
 }
 
-redirect_uri='http://localhost:5000/client/passport'
+redirect_uri= host + '/client/passport'
 client_id = '123456'
 users[client_id] = []
 auth_code = {}
@@ -72,14 +74,14 @@ def oauth():
 
 @app.route('/client/login', methods=['POST', 'GET'])
 def client_login():
-    uri = 'http://localhost:5000/oauth?response_type=code&client_id=%s&redirect_uri=%s' % (client_id, redirect_uri)
+    uri = host + '/oauth?response_type=code&client_id=%s&redirect_uri=%s' % (client_id, redirect_uri)
     return redirect(uri)
 
 
 @app.route('/client/passport', methods=['POST', 'GET'])
 def client_passport():
     code = request.args.get('code')
-    uri = 'http://localhost:5000/oauth?grant_type=authorization_code&code=%s&redirect_uri=%s&client_id=%s' % (code, redirect_uri, client_id)
+    uri = host + '/oauth?grant_type=authorization_code&code=%s&redirect_uri=%s&client_id=%s' % (code, redirect_uri, client_id)
     return redirect(uri)
 
 
