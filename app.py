@@ -9,7 +9,7 @@ from flask import Flask, request, redirect, render_template
 
 app = Flask(__name__)
 
-host = 'http://localhost:5000'
+host = 'http://localhost/oauth/'
 
 users = {
     "magigo": ["123456"]
