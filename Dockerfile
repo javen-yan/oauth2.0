@@ -1,6 +1,6 @@
 FROM python:3.6.4
 ENV HOME /app/oauth2.0
-COPY ./oauth2.0 $HOME
+COPY ./* $HOME
 WORKDIR $HOME
 RUN pip install -U pip
 RUN pip install flask
